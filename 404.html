@@ -1,0 +1,60 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#0d1117" />
+    <title>Aholo 密室 · 白盒原型</title>
+    <script type="module" crossorigin src="/aholo-escape-room/assets/index-BdKX-Z7R.js"></script>
+    <link rel="stylesheet" crossorigin href="/aholo-escape-room/assets/index-BAnwkXMt.css">
+  </head>
+  <body>
+    <canvas id="game-canvas" aria-label="Aholo 密室游戏画面"></canvas>
+    <div id="hud" class="hud">
+      <header class="hud__header">
+        <div>
+          <p class="eyebrow">AHOLO ESCAPE ROOM / WHITEBOX</p>
+          <h1 id="game-title">第零号房</h1>
+        </div>
+        <button id="help-button" class="ghost-button" type="button">操作说明</button>
+      </header>
+      <aside class="objective-card">
+        <span class="label">当前目标</span>
+        <strong id="objective">调查房间，找到离开的方法</strong>
+      </aside>
+      <div id="crosshair" class="crosshair" aria-hidden="true"></div>
+      <div id="interaction-prompt" class="interaction-prompt" hidden></div>
+      <section class="status-bar">
+        <div><span class="label">线索</span><strong id="clue-count">0 / 2</strong></div>
+        <div><span class="label">状态</span><strong id="game-status">调查中</strong></div>
+      </section>
+      <div id="toast" class="toast" hidden></div>
+    </div>
+
+    <div id="start-screen" class="overlay overlay--visible">
+      <section class="panel panel--hero">
+        <p class="eyebrow">可玩的剧情与谜题讨论底座</p>
+        <h2>第零号房</h2>
+        <p>这是临时白盒，不代表最终剧情或美术。它用于验证调查、线索和解锁节奏。</p>
+        <button id="start-button" class="primary-button" type="button">进入密室</button>
+        <p class="hint">WASD 移动 · 鼠标观察 · E 调查 · Esc 释放鼠标</p>
+      </section>
+    </div>
+
+    <div id="dialog" class="overlay" hidden>
+      <section class="panel" role="dialog" aria-modal="true" aria-labelledby="dialog-title">
+        <p class="eyebrow" id="dialog-kicker">调查结果</p>
+        <h2 id="dialog-title"></h2>
+        <p id="dialog-body"></p>
+        <form id="code-form" hidden>
+          <label for="code-input">输入四位密码</label>
+          <input id="code-input" name="code" inputmode="numeric" maxlength="4" autocomplete="off" />
+          <p id="code-feedback" class="feedback" aria-live="polite"></p>
+          <button class="primary-button" type="submit">确认</button>
+        </form>
+        <button id="dialog-close" class="ghost-button" type="button">继续调查</button>
+      </section>
+    </div>
+
+  </body>
+</html>
