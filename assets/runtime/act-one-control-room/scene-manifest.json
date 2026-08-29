@@ -19,7 +19,7 @@
       "id": "producer-brief",
       "type": "glb",
       "url": "assets/runtime/act-one-control-room/props/producer-note.glb",
-      "position": [-1.0, 1.035, -0.35],
+      "position": [-1.0, 0.935, -1.36],
       "rotationEuler": [-90, 0, -8],
       "scale": [2.2, 2.2, 2.2]
     },
@@ -35,7 +35,7 @@
       "id": "unlabeled-usb",
       "type": "glb",
       "url": "assets/runtime/act-one-control-room/props/usb-drive.glb",
-      "position": [0.72, 0.99, -1.06],
+      "position": [0.72, 0.885, -1.06],
       "rotationEuler": [0, 28, 0],
       "scale": [1.875, 1.875, 1.875]
     },
@@ -43,7 +43,7 @@
       "id": "staff-phone",
       "type": "glb",
       "url": "assets/runtime/act-one-control-room/props/staff-phone.glb",
-      "position": [-0.78, 0.99, -1.08],
+      "position": [-0.78, 0.885, -1.08],
       "rotationEuler": [-90, 0, 15],
       "scale": [0.58, 0.58, 0.58]
     }
