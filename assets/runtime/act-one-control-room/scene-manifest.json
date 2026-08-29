@@ -1,0 +1,56 @@
+{
+  "schemaVersion": "aholo.escape.scene@1",
+  "status": "ready",
+  "source": "aholo-local-export",
+  "visual": {
+    "type": "gsplat",
+    "url": "assets/runtime/act-one-control-room/act-one-control-room-v2-full.hq.sog",
+    "position": [0.925093614, 1.766375565, -1.238205453],
+    "rotationEuler": [-90, 0, 0],
+    "scale": [1, 1, 1]
+  },
+  "collision": {
+    "url": "assets/runtime/act-one-control-room/act-one-control-room-v2.collision.glb",
+    "sourceUp": "y",
+    "metersPerUnit": 1
+  },
+  "props": [
+    {
+      "id": "producer-brief",
+      "type": "glb",
+      "url": "assets/runtime/act-one-control-room/props/producer-note.glb",
+      "position": [-1.0, 1.035, -0.35],
+      "rotationEuler": [-90, 0, -8],
+      "scale": [2.2, 2.2, 2.2]
+    },
+    {
+      "id": "archive-photos",
+      "type": "glb",
+      "url": "assets/runtime/act-one-control-room/props/archive-photos.glb",
+      "position": [-1.8, 1.18, 1.9],
+      "rotationEuler": [-90, 0, 8],
+      "scale": [3, 3, 3]
+    },
+    {
+      "id": "unlabeled-usb",
+      "type": "glb",
+      "url": "assets/runtime/act-one-control-room/props/usb-drive.glb",
+      "position": [0.72, 0.99, -1.06],
+      "rotationEuler": [0, 28, 0],
+      "scale": [1.875, 1.875, 1.875]
+    },
+    {
+      "id": "staff-phone",
+      "type": "glb",
+      "url": "assets/runtime/act-one-control-room/props/staff-phone.glb",
+      "position": [-0.78, 0.99, -1.08],
+      "rotationEuler": [-90, 0, 15],
+      "scale": [0.58, 0.58, 0.58]
+    }
+  ],
+  "provenance": {
+    "aholoProjectId": "3FO4K4XQJ68W",
+    "exportedAt": "2026-08-28T09:23:29Z",
+    "sourceSha256": "23f183b58e7271a6b2c8d09639a9eb012db63dd0ecd9696a52132e5352ec5920"
+  }
+}

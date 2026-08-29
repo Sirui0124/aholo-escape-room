@@ -4,40 +4,54 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="theme-color" content="#0d1117" />
-    <title>Aholo 密室 · 白盒原型</title>
-    <script type="module" crossorigin src="/aholo-escape-room/assets/index-B4HiYSYL.js"></script>
-    <link rel="stylesheet" crossorigin href="/aholo-escape-room/assets/index-BAnwkXMt.css">
+    <title>一起淋雨 · 第一幕</title>
+    <script type="module" crossorigin src="/aholo-escape-room/assets/index-xQNy-e6j.js"></script>
+    <link rel="stylesheet" crossorigin href="/aholo-escape-room/assets/index-CCeN5aOZ.css">
   </head>
   <body>
-    <canvas id="game-canvas" aria-label="Aholo 密室游戏画面"></canvas>
+    <canvas id="game-canvas" aria-label="《一起淋雨》密室游戏画面"></canvas>
     <div id="hud" class="hud">
       <header class="hud__header">
         <div>
           <p class="eyebrow">AHOLO ESCAPE ROOM / WHITEBOX</p>
-          <h1 id="game-title">第零号房</h1>
+          <h1 id="game-title">第一幕 · 导播室</h1>
         </div>
-        <button id="help-button" class="ghost-button" type="button">操作说明</button>
+        <div class="hud__actions">
+          <button id="bag-button" class="ghost-button" type="button">背包</button>
+          <button id="help-button" class="ghost-button" type="button">操作说明</button>
+        </div>
       </header>
       <aside class="objective-card">
         <span class="label">当前目标</span>
-        <strong id="objective">调查房间，找到离开的方法</strong>
+        <strong id="objective">调查 6 个原始线索，完成 3 个素材任务</strong>
       </aside>
       <div id="crosshair" class="crosshair" aria-hidden="true"></div>
       <div id="interaction-prompt" class="interaction-prompt" hidden></div>
       <section class="status-bar">
-        <div><span class="label">线索</span><strong id="clue-count">0 / 2</strong></div>
+        <div><span class="label">原始线索</span><strong id="clue-count">0 / 6</strong></div>
+        <div><span class="label">素材任务</span><strong id="task-count">0 / 3</strong></div>
         <div><span class="label">状态</span><strong id="game-status">调查中</strong></div>
       </section>
       <div id="toast" class="toast" hidden></div>
+      <div id="mobile-controls" class="mobile-controls" hidden aria-label="移动端操作区">
+        <div id="move-pad" class="move-pad" aria-label="移动摇杆">
+          <div id="move-stick" class="move-stick" aria-hidden="true"></div>
+        </div>
+        <div id="look-pad" class="look-pad" aria-label="视角摇杆">
+          <div id="look-stick" class="look-stick" aria-hidden="true"></div>
+        </div>
+        <button id="mobile-interact" class="mobile-interact" type="button" disabled>调查</button>
+      </div>
     </div>
 
     <div id="start-screen" class="overlay overlay--visible">
       <section class="panel panel--hero">
-        <p class="eyebrow">可玩的剧情与谜题讨论底座</p>
-        <h2>第零号房</h2>
-        <p>这是临时白盒，不代表最终剧情或美术。它用于验证调查、线索和解锁节奏。</p>
-        <button id="start-button" class="primary-button" type="button">进入密室</button>
-        <p class="hint">WASD 移动 · 鼠标观察 · E 调查 · Esc 释放鼠标</p>
+        <p class="eyebrow" id="intro-kicker">距离交片还有 90 分钟</p>
+        <h2 id="intro-title">第一幕 · 导播室</h2>
+        <p id="intro-body">周屿退赛了。你有一个半小时来决定剪辑节奏。</p>
+        <button id="start-button" class="primary-button" type="button">开始整理素材</button>
+        <a class="demo-entry-link" href="?story-demo=1">直接试玩后半轮剪辑</a>
+        <p class="hint control-hint">WASD 移动 · 鼠标观察 · E 调查 · Esc 释放鼠标</p>
       </section>
     </div>
 
@@ -45,14 +59,35 @@
       <section class="panel" role="dialog" aria-modal="true" aria-labelledby="dialog-title">
         <p class="eyebrow" id="dialog-kicker">调查结果</p>
         <h2 id="dialog-title"></h2>
+        <figure id="dialog-inspection" class="inspection" hidden>
+          <img id="inspection-image" alt="" />
+          <figcaption id="inspection-caption"></figcaption>
+        </figure>
         <p id="dialog-body"></p>
         <form id="code-form" hidden>
-          <label for="code-input">输入四位密码</label>
-          <input id="code-input" name="code" inputmode="numeric" maxlength="4" autocomplete="off" />
+          <div id="code-input-wrap">
+            <label id="code-label" for="code-input">输入答案</label>
+            <input id="code-input" name="code" inputmode="numeric" maxlength="4" autocomplete="off" />
+          </div>
+          <div id="choice-list" class="choice-list" hidden></div>
           <p id="code-feedback" class="feedback" aria-live="polite"></p>
-          <button class="primary-button" type="submit">确认</button>
+          <div class="form-actions">
+            <button id="puzzle-hint" class="ghost-button" type="button">需要提示</button>
+            <button class="primary-button" type="submit">确认</button>
+          </div>
         </form>
+        <button id="editing-enter" class="primary-button editing-enter" type="button" hidden>进入四幕剪辑台</button>
         <button id="dialog-close" class="ghost-button" type="button">继续调查</button>
+      </section>
+    </div>
+
+    <div id="bag" class="overlay" hidden>
+      <section class="panel bag-panel" role="dialog" aria-modal="true" aria-labelledby="bag-title">
+        <p class="eyebrow">本轮素材汇集</p>
+        <h2 id="bag-title">剪辑背包</h2>
+        <p class="bag-intro">查看原始物品不会直接获得成片素材；完成对应任务后，奖励才会在这里入库。</p>
+        <div id="bag-content" class="bag-content"></div>
+        <button id="bag-close" class="ghost-button" type="button">返回导播室</button>
       </section>
     </div>
 

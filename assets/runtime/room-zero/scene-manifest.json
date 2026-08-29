@@ -1,5 +1,22 @@
 {
   "schemaVersion": "aholo.escape.scene@1",
-  "status": "waiting-for-assets",
-  "source": "whitebox"
+  "status": "ready",
+  "source": "aholo-local-export",
+  "visual": {
+    "type": "gsplat",
+    "url": "/assets/runtime/room-zero/room-zero.sog",
+    "position": [-0.0919627195, 1.3839882332, -0.6829236575],
+    "rotationEuler": [-90, 0, 0],
+    "scale": [1, 1, 1]
+  },
+  "collision": {
+    "url": "/assets/runtime/room-zero/room-zero.collision.glb",
+    "sourceUp": "y",
+    "metersPerUnit": 1
+  },
+  "provenance": {
+    "aholoProjectId": "3FO4K4XQRKHF",
+    "exportedAt": "2026-08-28T05:55:50Z",
+    "sourceSha256": "f598346ae71a0454d5aac2b871fd42e4cf39d17102c943c961df0d38c6405a63"
+  }
 }
